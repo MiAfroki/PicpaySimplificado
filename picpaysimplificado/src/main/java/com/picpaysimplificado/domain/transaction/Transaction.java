@@ -1,5 +1,6 @@
 package com.picpaysimplificado.domain.transaction;
 
+import com.picpaysimplificado.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -8,6 +9,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 //Transactions pois transaction é uma palavra reservada
 @Entity(name="transactions")
@@ -27,10 +29,10 @@ public class Transaction {
     //Referência de quem foi o sender e quem foi o receiver (ManyToOne = 1 usuário pode ter várias transações, mas uma transação só pode ter um sender e um receiver
     @ManyToOne
     @JoinColumn(name="sender_id")
-    private user sender;
+    private User sender;
     @ManyToOne
     @JoinColumn(name="receiver_id")
-    private user receiver;
+    private User receiver;
 
     //Quando foi realizada a transação
     private LocalDateTime timestamp;
